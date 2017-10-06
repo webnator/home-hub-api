@@ -1,0 +1,46 @@
+{
+  "name": "home-hub-api",
+  "version": "0.0.1",
+  "description": "An API to manage multiple services for home automation",
+  "main": "app/index.js",
+  "author": {
+    "name": "Williams A Aguilera",
+    "email": "webnator@gmail.com",
+    "url": "https://github.com/webnator/"
+  },
+  "license": "Copyright",
+  "dependencies": {
+    "awilix": "2.6.0",
+    "hapi": "16.5.0",
+    "joi": "10.6.0",
+    "lodash": "4.17.4",
+    "mongodb": "2.2.31",
+    "socket.io": "^2.0.3",
+    "ws": "^3.1.0"
+  },
+  "devDependencies": {
+    "cross-env": "^4.0.0",
+    "jest": "^20.0.0",
+    "jsdoc": "^3.4.3",
+    "nodemon": "^1.11.0",
+    "raml2html": "^6.3.0",
+    "rimraf": "^2.6.1"
+  },
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "scripts": {
+    "start": "node app",
+    "dev": "cross-env NODE_ENV=local nodemon --inspect -q -w ./app app",
+    "test:clean": "rimraf ./coverage",
+    "pretest:unit": "npm run test:clean",
+    "test:unit": "cross-env NODE_ENV=test cross-env NODE_ENV=test jest -c ./tests/unit.config.json --coverage",
+    "test": "npm run test:unit",
+    "test:unit:watch": "cross-env NODE_ENV=test cross-env NODE_ENV=test jest -c ./tests/unit.config.json --watchAll",
+    "build:apiDocs:clean": "rimraf ./documentation && mkdir ./documentation",
+    "build:apiDocs": "npm run build:apiDocs:clean && raml2html raml/api.raml > ./documentation/index.html",
+    "nsp": "nsp check",
+    "depcheck": "depcheck"
+  },
+  "private": true
+}
